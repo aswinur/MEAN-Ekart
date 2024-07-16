@@ -1,0 +1,30 @@
+
+
+<div class="w-100 d-flex justify-content-center align-items-center" style="height: 90vh">
+    <div class="row w-50 border shadow bg-light" style="height: 40vh">
+        <div class="col mt-5">
+            <img src="https://dreamplanetmedia.com/dist/image/login1.png" alt="" class="img-fluid">
+        </div>
+
+        <div class="col p-3 d-flex flex-column align-items-center justify-content-center">
+            <h3>Login</h3>
+
+            <form [formGroup]="logForm" (ngSubmit)="handleSubmit()">
+            <input formControlName="email" type="email" name="email" placeholder="Enter your email" class="form-control mb-3">
+            <div class="text-danger" *ngIf="logForm.get('email')?.errors && logForm.get('email')?.touched ">
+                *Invalid Email
+            </div>
+
+            <input formControlName="password" type="password" name="password" placeholder="Enter your password" class="form-control mb-3">
+            <div class="text-danger" *ngIf="logForm.get('password')?.errors && logForm.get('password')?.touched ">
+                *Invalid Password
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-info" [disabled]="logForm.invalid">Login</button>
+                <a routerLink="/reg" class="btn btn-link">New user?</a>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

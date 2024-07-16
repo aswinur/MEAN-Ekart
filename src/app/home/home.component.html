@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+
+<header class="bg-light py-3">
+    <div id="carouselExampleFade" data-interval=".5s" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img height="450px"
+                    src="https://marketplace.canva.com/EAFED0hv9G0/1/0/1600w/canva-blue-pink-modern-special-offer-sale-banner-J5VkNReQ8WA.jpg"
+                    class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img height="450px"
+                    src="https://t4.ftcdn.net/jpg/02/30/72/41/360_F_230724124_ZWlHSZBIvqvdJQj9at15WaKRqAtCUKTu.jpg"
+                    class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img height="450px"
+                    src="https://t3.ftcdn.net/jpg/02/62/18/46/360_F_262184611_bXhmboL9oE6k2ILu4qXxNWFhNJCEbTn2.jpg"
+                    class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5" *ngIf="products.length>0 ; else elsedata">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let i of products | search: searchkey">
+                <div class="card h-100 shadow" style="border-color: #bdc5ba; ">
+                    <!-- Product image-->
+                    <img routerLink="/detail/{{i.id}}" style="cursor: pointer" class="card-img-top" src="{{i.image}}"
+                        alt="..." height="220px" width="110px" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{i.title.slice(0,12)}}</h5>
+                            <!-- Product price-->
+                            {{i.price | currency}}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-between">
+                        <button class="btn" (click)="addWish(i)"> <i class="fa-solid fa-heart-circle-plus fa-lg"
+                                style="color: #f01919;"></i></button>
+                        <button class="btn" (click)="addCart(i)"> <i class="fa-solid fa-cart-plus fa-lg"
+                                style="color: #17b003;"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="(products|search:searchkey)<=0">
+                <h2 class="text-danger text-center">Search item is not available</h2>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #elsedata>
+        <div class="text-center h1 p-5 ">
+            No data available
+        </div>
+    </ng-template>
+</section>

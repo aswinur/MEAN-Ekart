@@ -1,0 +1,43 @@
+<nav class="navbar navbar-light sticky-top" style="height: 70px; background-color: #bdc5ba;">
+    <div class="container-fluid">
+
+        <span class="navbar-brand mx-5" style="font-size: 30px; cursor: pointer;" routerLink=" " >
+            <!-- <i class="fa-solid fa-basket-shopping fa-xl" style="color: #166d53;"></i> -->
+             <img src="https://pngimg.com/uploads/shopping_cart/shopping_cart_PNG22.png"  width="50px" alt="">
+            <span style="color: #166d53; font-family: cursive;"> EShopping</span>
+        </span>
+
+        <div class="justify-content-between d-flex">
+            <div class="d-flex">
+                <input type="text" #searchkey class="form-control" placeholder="Enter keyword">
+                <button (click)="searchInput(searchkey.value)" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <a routerLink="wish" class="btn  me-3 bt ">
+                <i class="fa-solid fa-heart fa-xl" style="color: #f01919;"></i>
+                Wishlist
+                <span class="badge bg-danger">
+                   {{wishCount}}
+                </span>
+            </a>
+            <a routerLink="/cart" class="btn me-3  bt">
+                <i class="fa-solid fa-cart-shopping fa-xl" style="color: #17b003;"></i>
+                Cart
+                <span class="badge bg-success">
+                    {{cartCount}}
+                 </span>
+            </a>
+            <a routerLink="log" class="btn  bt" *ngIf="!loginStatus">
+                <i class="fa-solid fa-right-to-bracket fa-xl" style="color: #18161a;"></i>
+                Login
+            </a>
+            <span *ngIf="loginStatus">
+                <i class="fa-solid fa-user"></i>
+                {{user}}
+                <button class="btn" (click)="logout()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    Logout
+                </button>
+            </span>
+        </div>
+    </div>
+</nav>
